@@ -20,11 +20,11 @@ export default class PetController {
     );
 
     if (!Object.values(EnumEspecie).includes(especie)) {
-      return res.status(400).json({ error: "Especie inválida" });
+      return res.status(400).json({ erros: "Especie inválida" });
     }
 
     if (porte && !(porte in EnumPorte)) {
-      return res.status(400).json({ error: "Porte inválido" });
+      return res.status(400).json({ erros: "Porte inválido" });
     }
     const novoPet = new PetEntity(
       nome,
@@ -37,7 +37,7 @@ export default class PetController {
     await this.repository.criaPet(novoPet);
     return res
       .status(201)
-      .json({ data: { id: novoPet.id, nome, especie, porte } });
+      .json({ dados: { id: novoPet.id, nome, especie, porte } });
   }
 
   async listaPet(
@@ -45,7 +45,7 @@ export default class PetController {
     res: Response<TipoResponseBodyPet>
   ) {
     const listaDePets = await this.repository.listaPet();
-    const data = listaDePets.map((pet) => {
+    const dados = listaDePets.map((pet) => {
       return {
         id: pet.id,
         nome: pet.nome,
@@ -53,7 +53,7 @@ export default class PetController {
         especie: pet.especie,
       };
     });
-    return res.status(200).json({ data });
+    return res.status(200).json({ dados });
   }
 
   async atualizaPet(
@@ -67,7 +67,7 @@ export default class PetController {
     );
 
     if (!success) {
-      return res.status(404).json({ error: message });
+      return res.status(404).json({ erros: message });
     }
     return res.sendStatus(204);
   }
@@ -81,7 +81,7 @@ export default class PetController {
     const { success, message } = await this.repository.deletaPet(Number(id));
 
     if (!success) {
-      return res.status(404).json({ error: message });
+      return res.status(404).json({ erros: message });
     }
     return res.sendStatus(204);
   }
@@ -98,7 +98,7 @@ export default class PetController {
     );
 
     if (!success) {
-      return res.status(404).json({ error: message });
+      return res.status(404).json({ erros: message });
     }
     return res.sendStatus(204);
   }
