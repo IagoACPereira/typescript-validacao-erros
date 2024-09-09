@@ -6,8 +6,14 @@ import { pt } from "yup-locale-pt";
 yup.setLocale(pt)
 
 const schemaBodyEndereco: yup.ObjectSchema<Omit<EnderecoEntity, "id">> = yup.object({
-  cidade: yup.string().defined().required(),
-  estado: yup.string().defined().required(),
+  cidade: yup
+    .string()
+    .defined()
+    .required(),
+  estado: yup
+    .string()
+    .defined()
+    .required(),
 });
 
 async function middlewareValidadorBodyEndereco(req: Request, res: Response, next: NextFunction) {
