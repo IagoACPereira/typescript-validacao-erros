@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import ManipulaErros from "../utils/manipulaErros";
 import { EnumHttpStatusCode } from "../enum/EnumHttpStatusCode";
+import { ManipulaErros } from "../utils/manipulaErros";
 
 export function erroMiddleware(erro: ManipulaErros, req: Request, res: Response, next: NextFunction) {
   const statusCode = erro.statusCode ?? EnumHttpStatusCode.INTERNAL_SERVER_ERROR;
