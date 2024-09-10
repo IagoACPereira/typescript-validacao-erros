@@ -5,7 +5,7 @@ import { ManipulaErros } from "../utils/manipulaErros";
 export function erroMiddleware(erro: ManipulaErros, req: Request, res: Response, next: NextFunction) {
   const statusCode = erro.statusCode ?? EnumHttpStatusCode.INTERNAL_SERVER_ERROR;
 
-  const mensagem = erro.statusCode ? erro.message : "Erro interno do servidor";
+  const mensagem = erro.statusCode ? erro.message : `Erro interno do servidor:\n${erro}`;
 
   res.status(statusCode).json({ mensagem });
 

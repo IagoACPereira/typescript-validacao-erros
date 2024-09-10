@@ -7,7 +7,7 @@ import EnumPorte from "../../enum/EnumPorte";
 
 yup.setLocale(pt);
 
-const schemaBodyPet: yup.ObjectSchema<Omit<TipoRequestBodyPet, "adotante">> = yup.object({
+const schemaBodyPet: yup.ObjectSchema<Omit<TipoRequestBodyPet, "adotante" | "abrigo">> = yup.object({
   nome: yup
     .string()
     .defined()

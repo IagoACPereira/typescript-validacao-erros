@@ -19,9 +19,11 @@ export default class AdotanteRepository implements InterfaceAdotanteRepository {
     }
     await this.repository.save(adotante);
   }
+
   async listaAdotantes(): Promise<AdotanteEntity[]> {
     return await this.repository.find();
   }
+  
   async atualizaAdotante(
     id: number,
     newData: AdotanteEntity
